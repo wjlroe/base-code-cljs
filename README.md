@@ -27,7 +27,12 @@ This will start up a web server for you. [Open it in your browser](http://localh
 
 ## TODO
 
-* Script to sync static assets into a CDN so "deployment" can be automated
+* Script to sync static assets into a CDN so "deployment" can be
+  automated
+
+## References / Thank yous
+
+* super useful blog post about making [breakout](http://nakkaya.com/2012/01/31/clojurescript-canvas-a-simple-breakout-implementation/)
 
 ## License
 
