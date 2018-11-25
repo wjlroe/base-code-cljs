@@ -9,3 +9,4 @@
 /.lein-plugins
 /.lein-cljs*
 /resources/public/game.js
+/target
