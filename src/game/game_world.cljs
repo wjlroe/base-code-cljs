@@ -2,13 +2,23 @@
   (:require [cljs.core.async :refer [chan put! take! >! <! buffer
                                      dropping-buffer sliding-buffer timeout close! alts!]]
             [cljs.core.async :refer-macros [go go-loop alt!]]
+            [goog.style :as style]
             [goog.dom :as dom]))
 
 (defonce game-started (atom nil))
 
+(defn find-image
+  [id]
+  (dom/getElement (name id)))
+
 (def images
   {:crate "crate.png"
-   :tree-stump "tree-stump.png"})
+   :tree-trunk "tree-trunk.png"})
+
+(defn set-element-style
+  [element style]
+  (doseq [[key value] style]
+    (style/setStyle element (name key) value)))
 
 (defn insert-image-assets!
   [images]
@@ -16,6 +26,7 @@
     (let [body (dom/getElement "body")
           div (dom/createElement "div")]
       (set! (.-id div) "images")
+      (set-element-style div {:display "none"})
       (doseq [[id filename] images]
         (let [img (dom/createElement "img")]
           (set! (.-id img) (name id))
@@ -40,7 +51,8 @@
       (set! (.-fillStyle surface) "#00ff00")
       (.fillRect surface 0 0 width height)
       (.strokeRect surface 0 0 width height))
-    (.drawImage surface (:crate images) 10 10)))
+    (.drawImage surface (find-image :crate) 10 10)
+    (.drawImage surface (find-image :tree-trunk) 50 50)))
 
 (when-not @game-started
   (start-game)
