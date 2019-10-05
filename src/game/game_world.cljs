@@ -49,6 +49,7 @@
     (let [width (.-width canvas)
           height (.-height canvas)]
       (set! (.-fillStyle surface) "#00ff00")
+      (set! (.-strokeStyle surface) "#00ff00")
       (.fillRect surface 0 0 width height)
       (.strokeRect surface 0 0 width height))
     (.drawImage surface (find-image :crate) 10 10)
